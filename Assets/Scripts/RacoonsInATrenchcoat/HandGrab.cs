@@ -33,7 +33,7 @@ public class HandGrab : MonoBehaviour
     {
         grabbing = newGrabbing;
 
-        if(!grabbing)
+        if (heldObject && !grabbing)
         {
             heldObject.transform.parent = null;
             if (objectRigidbody)

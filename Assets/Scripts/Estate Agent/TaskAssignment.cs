@@ -23,15 +23,21 @@ public class TaskAssignment : MonoBehaviour
     [SerializeField] private TextMeshProUGUI task;
     [SerializeField] private RawImage textBox;
     [SerializeField] private Animator textboxAnim;
-    
+
+    //Tasks
+    [SerializeField] private List<string> taskTexts;
+    private int currentTask;
 
     private void Start()
     {
         subtitles.text = dialogue[0];
         currentIndex = 0;
         currentWaypoint = 0;
+        currentTask = 0;
 
         agent = GetComponent<NavMeshAgent>();
+        transform.position = waypoints[0].transform.position;
+        agent.updatePosition = true;
     }
     public void StartDialogue()
     {
@@ -50,5 +56,10 @@ public class TaskAssignment : MonoBehaviour
         currentWaypoint++;
     }
 
+    public void SetTask()
+    {
+        task.text = taskTexts[currentTask];
+        currentTask++;
+    }
 
 }

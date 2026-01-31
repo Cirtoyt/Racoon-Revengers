@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TESTmovement : MonoBehaviour
 {
-    private int speed = 5;
+    public float moveSpeed;
 
     void Start()
     {
@@ -12,6 +12,7 @@ public class TESTmovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
     }
 }

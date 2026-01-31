@@ -27,7 +27,7 @@ public class ArmRaccoon : MonoBehaviour
     private bool action2Pressed;
 
     [SerializeField]
-    private float rotateSpeed = 250.0f;
+    private float rotateSpeed = 5.0f;
 
     private Quaternion startRot;
 
@@ -77,7 +77,7 @@ public class ArmRaccoon : MonoBehaviour
         startRot = transform.rotation;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         float targetZ = GetTargetZAxis();
         float targetX = GetTargetXAxis();
@@ -107,8 +107,8 @@ public class ArmRaccoon : MonoBehaviour
     {
         Quaternion targetRot = Quaternion.Euler(x, startRot.y, z);
 
-        PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, targetRot, rotateSpeed * Time.deltaTime);
-        
-        PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, targetRot, rotateSpeed * Time.deltaTime);
+        //PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, targetRot, rotateSpeed * Time.deltaTime);
+
+        PivotPoint.rotation = Quaternion.Slerp(PivotPoint.rotation, Quaternion.Euler(x, startRot.y, z), rotateSpeed * Time.deltaTime);
     }
 }

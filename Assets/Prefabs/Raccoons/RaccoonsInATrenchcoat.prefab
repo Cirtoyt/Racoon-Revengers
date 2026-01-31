@@ -250,6 +250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightArmRaccoon
       objectReference: {fileID: 0}
+    - target: {fileID: 8728239055840867588, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: rotateSpeed
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 8874136533163969867, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1500001
@@ -504,6 +508,10 @@ PrefabInstance:
     - target: {fileID: 2296923603634456956, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553898013953613592, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: rotateSpeed
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 8936414280706357439, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_Name

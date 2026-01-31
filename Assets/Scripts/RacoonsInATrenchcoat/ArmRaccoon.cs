@@ -13,12 +13,13 @@ public class ArmRaccoon : MonoBehaviour
 {
     public Transform PivotPoint;
     public ArmType ArmType;
+    public float rotateSpeed = 250.0f;
     private InputAction action1;
-    private Vector3 startRot;
+    private Quaternion startRot;
 
     private void Start()
     {
-        startRot = transform.rotation.eulerAngles;
+        startRot = transform.rotation;
         action1 = InputSystem.actions.FindAction("LeftArmRaccoonAction1");
 
     }
@@ -31,31 +32,17 @@ public class ArmRaccoon : MonoBehaviour
     private void MoveArmsXAxis()
     {
 
-        float targetRot = startRot.z;
-        Vector3 rotDirection = ArmType == ArmType.LeftArm ? transform.forward : -transform.forward;
+        Vector3 targetRotEuler = new Vector3(0.0f, 0.0f, ArmType == ArmType.RightArm ? 90.0f : 270.0f);
+        Quaternion targetRot = Quaternion.Euler(targetRotEuler);
 
         if (action1.IsPressed() == true)
         {
-            targetRot = ArmType == ArmType.RightArm ? 90.0f : 270.0f;
-            rotDirection = -rotDirection;
+            PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, targetRot, rotateSpeed * Time.deltaTime);
         }
-
-        float rotateDegs = Mathf.Abs(targetRot - transform.rotation.eulerAngles.z);
-
-
-
-        transform.RotateAround(PivotPoint.position, rotDirection, Mathf.Min(0.1f, rotateDegs));
-
-        if(ArmType == ArmType.LeftArm)
+        else
         {
-            return;
+            PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, startRot, rotateSpeed * Time.deltaTime);
         }
-        
-        Debug.Log(rotateDegs);
-        if (rotateDegs <= 0.01f && ArmType == ArmType.RightArm)
-        {
-            //Debug.Log(transform.rotation.eulerAngles);
-            //Debug.Log(startRot);
-        }
+
     }
 }

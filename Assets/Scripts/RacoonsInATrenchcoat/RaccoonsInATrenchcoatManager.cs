@@ -19,7 +19,7 @@ public class RaccoonsInATrenchcoatManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }

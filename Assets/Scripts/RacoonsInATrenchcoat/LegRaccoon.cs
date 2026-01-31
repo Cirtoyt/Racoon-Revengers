@@ -63,8 +63,9 @@ public class LegRaccoon : MonoBehaviour
             // Step in direction
             Debug.Log($"Stepping in direction: {sourceDirection}");
         }
-        else // AwaitingFollowUpStep
+        else if (AwaitingFollowUpStep && !justDidLeadStep)
         {
+            // Do follow-up step
             if (TargetStepDirection == StepDirection.Forward
                 && sourceDirection == StepDirection.Forward)
             {
@@ -88,6 +89,16 @@ public class LegRaccoon : MonoBehaviour
                 Step(TargetStepDirection);
             }
 
+            // Notify other leg we did a follow-up step
+            if (_whichSide == Handedness.Left)
+            {
+                RaccoonsInATrenchcoatManager.Instance.RightLegRaccoon.NotifyOtherLegDidFollowUpStep();
+            }
+            else // Right
+            {
+                RaccoonsInATrenchcoatManager.Instance.LeftLegRaccoon.NotifyOtherLegDidFollowUpStep();
+            }
+
             AwaitingFollowUpStep = false;
         }
     }
@@ -106,5 +117,10 @@ public class LegRaccoon : MonoBehaviour
                 // Step right
                 return;
         }
+    }
+
+    public void NotifyOtherLegDidFollowUpStep()
+    {
+        justDidLeadStep = false;
     }
 }

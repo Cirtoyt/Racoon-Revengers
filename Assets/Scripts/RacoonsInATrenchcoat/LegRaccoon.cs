@@ -12,11 +12,19 @@ public class LegRaccoon : MonoBehaviour
 
     [SerializeField] private Handedness _whichSide;
     [SerializeField] private float _headDirectionInfluenceMultiplier = 1;
+    [SerializeField] private float _stepSize = 1;
+    [SerializeField] private float _stepSpeed = 1;
 
     static StepDirection TargetStepDirection;
     static bool AwaitingFollowUpStep = false;
 
     private bool justDidLeadStep = false;
+    private Vector3 targetSteppedPosition;
+
+    private void Awake()
+    {
+        targetSteppedPosition = transform.position;
+    }
 
     #region Inputs
     private void OnLeftLegRaccoonAction1()
@@ -61,7 +69,7 @@ public class LegRaccoon : MonoBehaviour
             justDidLeadStep = true;
 
             // Step in direction
-            Debug.Log($"Stepping in direction: {sourceDirection}");
+            Step(TargetStepDirection);
         }
         else if (AwaitingFollowUpStep && !justDidLeadStep)
         {
@@ -139,7 +147,15 @@ public class LegRaccoon : MonoBehaviour
         Vector3 stepDirection = stepCoreDirection + (worldHeadDirection * _headDirectionInfluenceMultiplier);
         stepDirection.Normalize();
 
+        targetSteppedPosition += stepDirection * _stepSize;
+
         Debug.Log($"Stepped in direction: {stepDirection}");
+    }
+
+    private void FixedUpdate()
+    {
+        // Move foot to target stepped position
+        transform.position = Vector3.Lerp(transform.position, targetSteppedPosition, _stepSpeed * Time.deltaTime);
     }
 
     public void NotifyOtherLegStartedFollowUpStep()

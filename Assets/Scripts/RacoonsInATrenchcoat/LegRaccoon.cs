@@ -14,6 +14,7 @@ public class LegRaccoon : MonoBehaviour
     [SerializeField] private float _headDirectionInfluenceMultiplier = 1;
     [SerializeField] private float _stepSize = 1;
     [SerializeField] private float _stepSpeed = 1;
+    [SerializeField] private bool _debugLeg = false;
 
     static StepDirection TargetStepDirection;
     static bool AwaitingFollowUpStep = false;
@@ -154,8 +155,11 @@ public class LegRaccoon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Move foot to target stepped position
-        transform.position = Vector3.Lerp(transform.position, targetSteppedPosition, _stepSpeed * Time.deltaTime);
+        if (!_debugLeg)
+        {
+            // Move foot to target stepped position
+            transform.position = Vector3.Lerp(transform.position, targetSteppedPosition, _stepSpeed * Time.deltaTime);
+        }
     }
 
     public void NotifyOtherLegStartedFollowUpStep()

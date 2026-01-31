@@ -31,6 +31,8 @@ public class ArmRaccoon : MonoBehaviour
 
     private Quaternion startRot;
 
+    public HandGrab handGrab;
+
     private void OnEnable()
     {
 
@@ -58,18 +60,38 @@ public class ArmRaccoon : MonoBehaviour
     private void Action1_started(InputAction.CallbackContext obj)
     {
         action1Pressed = true;
+
+        if(handGrab)
+        {
+            handGrab.SetGrabbing(true);
+        }
     }
     private void Action2_started(InputAction.CallbackContext context)
     {
         action2Pressed = true;
+
+        if (handGrab)
+        {
+            handGrab.SetGrabbing(true);
+        }
     }
     private void Action1_canceled(InputAction.CallbackContext obj)
     {
         action1Pressed = false;
+
+        if (handGrab)
+        {
+            handGrab.SetGrabbing(action2Pressed);
+        }
     }
     private void Action2_canceled(InputAction.CallbackContext obj)
     {
         action2Pressed = false;
+
+        if (handGrab)
+        {
+            handGrab.SetGrabbing(action1Pressed);
+        }
     }
 
     private void Awake()
@@ -89,7 +111,7 @@ public class ArmRaccoon : MonoBehaviour
     {
         if(action2Pressed)
         {
-            return 90.0f;
+            return -90.0f;
         }
         return startRot.x;
     }

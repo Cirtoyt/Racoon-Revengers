@@ -2,15 +2,47 @@ using UnityEngine;
 
 public class HandGrab : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private bool grabbing = false;
+    private GameObject heldObject = null;
+    private Rigidbody objectRigidbody = null;
+
+    public void Grab(GameObject other)
     {
-        
+        if (!grabbing)
+        {
+            return;
+        }
+        if (heldObject)
+        {
+            return;
+        }
+        if(other.GetComponent<Grabbable>())
+        {
+            heldObject = other;
+            other.transform.parent = this.transform;
+            objectRigidbody = other.GetComponent<Rigidbody>();
+            if(objectRigidbody)
+            {
+                objectRigidbody.useGravity = false;
+                objectRigidbody.isKinematic = true;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetGrabbing(bool newGrabbing)
     {
-        
+        grabbing = newGrabbing;
+
+        if(!grabbing)
+        {
+            heldObject.transform.parent = null;
+            if (objectRigidbody)
+            {
+                objectRigidbody.useGravity = true;
+                objectRigidbody.isKinematic = false;
+            }
+            heldObject = null;
+            objectRigidbody = null;
+        }
     }
 }

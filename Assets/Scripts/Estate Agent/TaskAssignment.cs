@@ -28,14 +28,20 @@ public class TaskAssignment : MonoBehaviour
     [SerializeField] private List<string> taskTexts;
     private int currentTask;
 
+    //Animator
+    private Animator animator;
+
     private void Start()
     {
-        subtitles.text = dialogue[0];
+        subtitles.text = "";
         currentIndex = 0;
         currentWaypoint = 0;
         currentTask = 0;
 
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        Debug.Log("ANIMATOR: " + animator.name);
+
         transform.position = waypoints[0].transform.position;
         agent.updatePosition = true;
     }
@@ -62,4 +68,16 @@ public class TaskAssignment : MonoBehaviour
         currentTask++;
     }
 
+    private void Update()
+    {
+        Debug.Log("agent velocity: " + agent.velocity);
+        if (agent.velocity.x >= 0.5 || agent.velocity.z >= 0.5)
+        {
+            animator.SetBool("Walking", true);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
+        }
+    }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9088035811706652042}
   - component: {fileID: 3873763681207505777}
+  - component: {fileID: 3131337690990359174}
   m_Layer: 0
   m_Name: RightLegRaccoon
   m_TagString: Untagged
@@ -47,6 +48,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whichSide: 1
+  _headDirectionInfluenceMultiplier: 1
+--- !u!54 &3131337690990359174
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807779457714561697}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6479362634710710106
 GameObject:
   m_ObjectHideFlags: 0

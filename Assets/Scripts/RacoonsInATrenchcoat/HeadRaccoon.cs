@@ -69,29 +69,25 @@ public class HeadRaccoon : MonoBehaviour
     {
         if (!leftActionHeld && !rightActionHeld)
         {
-            Debug.Log("Head target direction set to neutral");
             return HeadDirection.Neutral;
         }
         else if (leftActionHeld && !rightActionHeld)
         {
-            Debug.Log("Head target direction set to left");
             return HeadDirection.Left;
         }
         else if (rightActionHeld && !leftActionHeld)
         {
-            Debug.Log("Head target direction set to right");
             return HeadDirection.Right;
         }
         else// if (leftActionHeld && rightActionHeld)
         {
-            Debug.Log("Head target direction set to up");
             return HeadDirection.Up;
         }
     }
 
     public void GetCurrentLookDirection(out Vector3 localForwardDirection, out Quaternion localRotation)
     {
-        localForwardDirection = Vector3.zero;
+        localForwardDirection = Vector3.forward;
         localRotation = Quaternion.identity;
 
         switch (GetTargetHeadDirection())

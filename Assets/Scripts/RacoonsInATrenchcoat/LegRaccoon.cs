@@ -11,6 +11,7 @@ public class LegRaccoon : MonoBehaviour
     }
 
     [SerializeField] private Handedness _whichSide;
+    [SerializeField] private float _headDirectionInfluenceMultiplier = 1;
 
     static StepDirection TargetStepDirection;
     static bool AwaitingFollowUpStep = false;
@@ -75,7 +76,7 @@ public class LegRaccoon : MonoBehaviour
             else if ((TargetStepDirection == StepDirection.Left || TargetStepDirection == StepDirection.Right)
                      &&(sourceDirection == StepDirection.Left || sourceDirection == StepDirection.Right))
             {
-                Debug.Log($"Correctly following with other leg stepping in direction: {sourceDirection}");
+                Debug.Log($"Correctly following with other leg stepping in direction: {TargetStepDirection}");
                 // Step in same direction as target step direction
                 Step(TargetStepDirection);
             }
@@ -91,11 +92,11 @@ public class LegRaccoon : MonoBehaviour
             // Notify other leg we did a follow-up step
             if (_whichSide == Handedness.Left)
             {
-                RaccoonsInATrenchcoatManager.Instance.RightLegRaccoon.NotifyOtherLegDidFollowUpStep();
+                RaccoonsInATrenchcoatManager.Instance.RightLegRaccoon.NotifyOtherLegStartedFollowUpStep();
             }
             else // Right
             {
-                RaccoonsInATrenchcoatManager.Instance.LeftLegRaccoon.NotifyOtherLegDidFollowUpStep();
+                RaccoonsInATrenchcoatManager.Instance.LeftLegRaccoon.NotifyOtherLegStartedFollowUpStep();
             }
 
             AwaitingFollowUpStep = false;
@@ -104,21 +105,44 @@ public class LegRaccoon : MonoBehaviour
 
     private void Step(StepDirection direction)
     {
+        RaccoonsInATrenchcoatManager.Instance.HeadRaccoon.GetCurrentLookDirection(out Vector3 localHeadForwardDirection,
+                                                                                  out Quaternion localHeadRotation);
+
+        Vector3 stepCoreDirection = Vector3.zero;
         switch (direction)
         {
             case StepDirection.Forward:
-                // Step forward
-                return;
+                stepCoreDirection = RaccoonsInATrenchcoatManager.Instance.transform.forward;
+                break;
             case StepDirection.Left:
-                // Step left
-                return;
+                stepCoreDirection = -RaccoonsInATrenchcoatManager.Instance.transform.right;
+                // Rotate head facing directioon to align with step left direction
+                localHeadForwardDirection = Quaternion.Euler(0, -90, 0) * localHeadForwardDirection;
+                break;
             case StepDirection.Right:
-                // Step right
-                return;
+                stepCoreDirection = RaccoonsInATrenchcoatManager.Instance.transform.right;
+                // Rotate head facing directioon to align with step right direction
+                localHeadForwardDirection = Quaternion.Euler(0, 90, 0) * localHeadForwardDirection;
+                break;
         }
+
+        // Flatten target step core direction
+        stepCoreDirection.y = 0;
+        stepCoreDirection.Normalize();
+
+        Vector3 worldHeadDirection = RaccoonsInATrenchcoatManager.Instance.HeadRaccoon.transform.TransformDirection(localHeadForwardDirection);
+        // Flatten head direction
+        worldHeadDirection.y = 0;
+        worldHeadDirection.Normalize();
+
+        // Add head influence to core step direction
+        Vector3 stepDirection = stepCoreDirection + (worldHeadDirection * _headDirectionInfluenceMultiplier);
+        stepDirection.Normalize();
+
+        Debug.Log($"Stepped in direction: {stepDirection}");
     }
 
-    public void NotifyOtherLegDidFollowUpStep()
+    public void NotifyOtherLegStartedFollowUpStep()
     {
         justDidLeadStep = false;
     }

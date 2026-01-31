@@ -1,14 +1,15 @@
 using UnityEngine;
+using static LegRaccoon;
 
 public class HeadRaccoon : MonoBehaviour
 {
-    private void Start()
+    private void OnHeadRaccoonAction1()
     {
-
+        Debug.Log("Test1");
     }
 
-    private void Update()
+    private void OnHeadRaccoonAction2()
     {
-
+        Debug.Log("Test2");
     }
 }

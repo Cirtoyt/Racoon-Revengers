@@ -60,7 +60,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!153 &3841485989009261620
 ConfigurableJoint:
@@ -143,7 +143,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_AngularYZDrive:
     serializedVersion: 4
-    positionSpring: 50
+    positionSpring: 550
     positionDamper: 4
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -183,7 +183,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 2
   m_AngularXMotion: 2
-  m_AngularYMotion: 0
+  m_AngularYMotion: 2
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
@@ -245,7 +245,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_AngularYZDrive:
     serializedVersion: 4
-    positionSpring: 50
+    positionSpring: 550
     positionDamper: 4
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -631,9 +631,17 @@ PrefabInstance:
       value: RightArmRaccoon
       objectReference: {fileID: 0}
     - target: {fileID: 2615648863084051805, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: m_Anchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615648863084051805, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 3968729829700433207}
+    - target: {fileID: 3746999104061984690, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8874136533163969867, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1500001
@@ -905,6 +913,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296923603634456956, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838284597893246595, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910943333597389858, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: m_Anchor.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3910943333597389858, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}

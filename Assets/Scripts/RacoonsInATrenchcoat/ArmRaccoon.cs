@@ -33,12 +33,16 @@ public class ArmRaccoon : MonoBehaviour
 
     public HandGrab handGrab;
 
-    private void OnEnable()
+    private void Awake()
     {
-
         action1 = action1reference.action;
         action2 = action2reference.action;
 
+        startRot = transform.rotation;
+    }
+
+    private void OnEnable()
+    {
         action1.started += Action1_started;
         action2.started += Action2_started;
 
@@ -48,8 +52,6 @@ public class ArmRaccoon : MonoBehaviour
 
     private void OnDisable()
     {
-
-
         action1.started -= Action1_started;
         action2.started -= Action2_started;
 
@@ -94,11 +96,6 @@ public class ArmRaccoon : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        startRot = transform.rotation;
-    }
-
     private void FixedUpdate()
     {
         float targetZ = GetTargetZAxis();
@@ -129,8 +126,6 @@ public class ArmRaccoon : MonoBehaviour
     {
         Quaternion targetRot = Quaternion.Euler(x, startRot.y, z);
 
-        //PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, targetRot, rotateSpeed * Time.deltaTime);
-
-        PivotPoint.rotation = Quaternion.Slerp(PivotPoint.rotation, Quaternion.Euler(x, startRot.y, z), rotateSpeed * Time.deltaTime);
+        PivotPoint.localRotation = Quaternion.Slerp(PivotPoint.localRotation, Quaternion.Euler(x, startRot.y, z), rotateSpeed * Time.deltaTime);
     }
 }

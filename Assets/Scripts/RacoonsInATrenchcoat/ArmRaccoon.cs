@@ -19,7 +19,7 @@ public class ArmRaccoon : MonoBehaviour
     private void Start()
     {
         startRot = transform.rotation.eulerAngles;
-        action1 = InputSystem.actions.FindAction("LeftArmRacoonAction1");
+        action1 = InputSystem.actions.FindAction("LeftArmRaccoonAction1");
 
     }
 
@@ -32,7 +32,7 @@ public class ArmRaccoon : MonoBehaviour
     {
 
         float targetRot = startRot.x;
-        Vector3 rotDirection = ArmType == ArmType.LeftArm ? Vector3.left : Vector3.right;
+        Vector3 rotDirection = ArmType == ArmType.LeftArm ? -transform.right : transform.right;
 
         if (action1.IsPressed() == true)
         {

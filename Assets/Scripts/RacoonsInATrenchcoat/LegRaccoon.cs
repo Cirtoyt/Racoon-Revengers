@@ -23,7 +23,6 @@ public class LegRaccoon : MonoBehaviour
         if (_whichSide != Handedness.Left)
             return;
 
-        if (justDidLeadStep)
         TryStep(StepDirection.Left);
     }
 

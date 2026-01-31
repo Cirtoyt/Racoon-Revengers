@@ -536,7 +536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8367551456499102106, guid: 0043eb41923967249a32af72816db86a, type: 3}
       propertyPath: m_Name
-      value: RacoonsInATrenchcoat
+      value: RaccoonsInATrenchcoat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

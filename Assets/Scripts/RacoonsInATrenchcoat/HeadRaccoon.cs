@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArmRacoon : MonoBehaviour
+public class HeadRaccoon : MonoBehaviour
 {
     private void Start()
     {

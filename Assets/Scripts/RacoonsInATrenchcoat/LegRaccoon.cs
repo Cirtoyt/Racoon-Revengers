@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class LegRacoon : MonoBehaviour
+public class LegRaccoon : MonoBehaviour
 {
     public enum StepDirection
     {

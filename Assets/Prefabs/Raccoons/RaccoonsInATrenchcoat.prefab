@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 452204520625921646}
   - component: {fileID: 3114650093313745366}
   m_Layer: 0
-  m_Name: RacoonsInATrenchcoat
+  m_Name: RaccoonsInATrenchcoat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +175,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6350001676346361198, guid: 057e925d545771546b1e2f7a443f899b, type: 3}
       propertyPath: m_Name
-      value: LeftLegRacoon
+      value: LeftLegRaccoon
       objectReference: {fileID: 0}
     - target: {fileID: 6386635079232092306, guid: 057e925d545771546b1e2f7a443f899b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -248,7 +248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1166928201438229203, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_Name
-      value: RightArmRacoon
+      value: RightArmRaccoon
       objectReference: {fileID: 0}
     - target: {fileID: 8874136533163969867, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_LocalPosition.x
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d063c4d2a7650434098076f8465d23ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 2af87a14bab9f5940ad073101e343169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4394661340103843131
@@ -361,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2388592671226889579, guid: 147aba10a0c1e174b97197b0704a9701, type: 3}
       propertyPath: m_Name
-      value: HeadRacoon
+      value: HeadRaccoon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -394,7 +394,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 807779457714561697, guid: f1d9a2156238c674087efd9805313c11, type: 3}
       propertyPath: m_Name
-      value: RightLegRacoon
+      value: RightLegRaccoon
       objectReference: {fileID: 0}
     - target: {fileID: 9088035811706652042, guid: f1d9a2156238c674087efd9805313c11, type: 3}
       propertyPath: m_LocalPosition.x
@@ -507,7 +507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8936414280706357439, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_Name
-      value: LeftArmRacoon
+      value: LeftArmRaccoon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d063c4d2a7650434098076f8465d23ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 2af87a14bab9f5940ad073101e343169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8771356599342642978 stripped

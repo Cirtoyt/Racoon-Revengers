@@ -31,16 +31,18 @@ public class ArmRaccoon : MonoBehaviour
     private void MoveArmsXAxis()
     {
 
-        float targetRot = startRot.x;
-        Vector3 rotDirection = ArmType == ArmType.LeftArm ? -transform.right : transform.right;
+        float targetRot = startRot.z;
+        Vector3 rotDirection = ArmType == ArmType.LeftArm ? transform.forward : -transform.forward;
 
         if (action1.IsPressed() == true)
         {
-            targetRot = ArmType == ArmType.LeftArm ? 90.0f : 270.0f;
+            targetRot = ArmType == ArmType.RightArm ? 90.0f : 270.0f;
             rotDirection = -rotDirection;
         }
 
-        float rotateDegs = Mathf.Abs(targetRot - transform.rotation.eulerAngles.x);
+        float rotateDegs = Mathf.Abs(targetRot - transform.rotation.eulerAngles.z);
+
+
 
         transform.RotateAround(PivotPoint.position, rotDirection, Mathf.Min(0.1f, rotateDegs));
 

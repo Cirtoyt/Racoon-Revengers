@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whichSide: 0
   _headDirectionInfluenceMultiplier: 1
+  _stepSize: 0.2
+  _stepSpeed: 5
 --- !u!54 &6335374372049446163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -72,10 +74,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &6602469586082084629
 GameObject:
   m_ObjectHideFlags: 0

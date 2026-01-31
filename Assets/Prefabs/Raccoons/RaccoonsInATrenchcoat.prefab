@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3968729829700433207}
   - component: {fileID: 3841485989009261620}
   - component: {fileID: 4730272915955247337}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RBHips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2158864462034584422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 1433071604304310322}
   - component: {fileID: 367656212466673395}
   - component: {fileID: 2177494824758785940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 4619039294744212936}
   - component: {fileID: 452204520625921646}
   - component: {fileID: 3114650093313745366}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RaccoonsInATrenchcoat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

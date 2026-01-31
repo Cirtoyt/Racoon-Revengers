@@ -2,11 +2,11 @@
     "name": "InputSystem_Actions",
     "maps": [
         {
-            "name": "RacoonFamily",
+            "name": "RaccoonFamily",
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "LeftLegRacoonAction1",
+                    "name": "LeftLegRaccoonAction1",
                     "type": "Button",
                     "id": "6775413f-6b75-498c-ba50-8ebf0e2ac452",
                     "expectedControlType": "",
@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftLegRacoonAction2",
+                    "name": "LeftLegRaccoonAction2",
                     "type": "Button",
                     "id": "a1bebea6-03fb-4dea-8b25-9531959a27f2",
                     "expectedControlType": "",
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightLegRacoonAction1",
+                    "name": "RightLegRaccoonAction1",
                     "type": "Button",
                     "id": "7bf4a07a-d287-4cad-bcea-b3715d9b45ef",
                     "expectedControlType": "",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightLegRacoonAction2",
+                    "name": "RightLegRaccoonAction2",
                     "type": "Button",
                     "id": "418026a0-7892-46a9-a753-afd706e92cb7",
                     "expectedControlType": "",
@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftArmRacoonAction1",
+                    "name": "LeftArmRaccoonAction1",
                     "type": "Button",
                     "id": "4932a60f-1365-4a08-b9bf-78c064b7302d",
                     "expectedControlType": "",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftArmRacoonAction2",
+                    "name": "LeftArmRaccoonAction2",
                     "type": "Button",
                     "id": "b36cd5db-4629-44cf-a22b-6be2d9cc62f2",
                     "expectedControlType": "",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightArmRacoonAction1",
+                    "name": "RightArmRaccoonAction1",
                     "type": "Button",
                     "id": "02d71e6a-2344-4303-9908-87e943210183",
                     "expectedControlType": "",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightArmRacoonAction2",
+                    "name": "RightArmRaccoonAction2",
                     "type": "Button",
                     "id": "363fa7df-7656-43e8-82cc-ddadbc6d2547",
                     "expectedControlType": "",
@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HeadRacoonAction1",
+                    "name": "HeadRaccoonAction1",
                     "type": "Button",
                     "id": "c163788f-767e-4336-a70f-84d5c049cdaf",
                     "expectedControlType": "",
@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HeadRacoonAction2",
+                    "name": "HeadRaccoonAction2",
                     "type": "Button",
                     "id": "43dc9638-205b-4532-8227-7ad4df6bf6f8",
                     "expectedControlType": "",
@@ -104,7 +104,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LeftLegRacoonAction1",
+                    "action": "LeftLegRaccoonAction1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -115,7 +115,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LeftLegRacoonAction2",
+                    "action": "LeftLegRaccoonAction2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -126,7 +126,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "RightLegRacoonAction1",
+                    "action": "RightLegRaccoonAction1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -137,7 +137,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "RightLegRacoonAction2",
+                    "action": "RightLegRaccoonAction2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -148,7 +148,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LeftArmRacoonAction1",
+                    "action": "LeftArmRaccoonAction1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -159,7 +159,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LeftArmRacoonAction2",
+                    "action": "LeftArmRaccoonAction2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -170,7 +170,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "RightArmRacoonAction1",
+                    "action": "RightArmRaccoonAction1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -181,7 +181,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "RightArmRacoonAction2",
+                    "action": "RightArmRaccoonAction2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -192,7 +192,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "HeadRacoonAction1",
+                    "action": "HeadRaccoonAction1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -203,7 +203,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "HeadRacoonAction2",
+                    "action": "HeadRaccoonAction2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

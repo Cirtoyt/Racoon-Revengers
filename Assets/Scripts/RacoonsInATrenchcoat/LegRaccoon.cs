@@ -17,7 +17,8 @@ public class LegRaccoon : MonoBehaviour
 
     private bool justDidLeadStep = false;
 
-    private void OnLeftLegRacoonAction1()
+    #region Inputs
+    private void OnLeftLegRaccoonAction1()
     {
         if (_whichSide != Handedness.Left)
             return;
@@ -26,7 +27,7 @@ public class LegRaccoon : MonoBehaviour
         TryStep(StepDirection.Left);
     }
 
-    private void OnLeftLegRacoonAction2()
+    private void OnLeftLegRaccoonAction2()
     {
         if (_whichSide != Handedness.Left)
             return;
@@ -34,7 +35,7 @@ public class LegRaccoon : MonoBehaviour
         TryStep(StepDirection.Forward);
     }
 
-    private void OnRightLegRacoonAction1()
+    private void OnRightLegRaccoonAction1()
     {
         if (_whichSide != Handedness.Right)
             return;
@@ -42,13 +43,14 @@ public class LegRaccoon : MonoBehaviour
         TryStep(StepDirection.Forward);
     }
 
-    private void OnRightLegRacoonAction2()
+    private void OnRightLegRaccoonAction2()
     {
         if (_whichSide != Handedness.Right)
             return;
 
         TryStep(StepDirection.Right);
     }
+    #endregion
 
     private void TryStep(StepDirection sourceDirection)
     {

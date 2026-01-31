@@ -630,6 +630,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightArmRaccoon
       objectReference: {fileID: 0}
+    - target: {fileID: 8728239055840867588, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: rotateSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8728239055840867588, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: action1reference
+      value: 
+      objectReference: {fileID: 2368699656998989891, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 8728239055840867588, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: action2reference
+      value: 
+      objectReference: {fileID: -6484951634920031681, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 8874136533163969867, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1500001
@@ -1038,6 +1050,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5553898013953613592, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: rotateSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553898013953613592, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: action1reference
+      value: 
+      objectReference: {fileID: -6381249978314490581, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 5553898013953613592, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: action2reference
+      value: 
+      objectReference: {fileID: 892440835670120870, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 8936414280706357439, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_Name
       value: LeftArmRaccoon

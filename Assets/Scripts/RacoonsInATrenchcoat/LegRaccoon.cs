@@ -21,6 +21,7 @@ public class LegRaccoon : MonoBehaviour
 
     private bool justDidLeadStep = false;
     private Vector3 targetSteppedPosition;
+    private Quaternion targetSteppedRotation;
 
     private void Awake()
     {
@@ -149,6 +150,7 @@ public class LegRaccoon : MonoBehaviour
         stepDirection.Normalize();
 
         targetSteppedPosition += stepDirection * _stepSize;
+        targetSteppedRotation = Quaternion.LookRotation(stepDirection, Vector3.up);
 
         Debug.Log($"Stepped in direction: {stepDirection}");
     }
@@ -159,6 +161,7 @@ public class LegRaccoon : MonoBehaviour
         {
             // Move foot to target stepped position
             transform.position = Vector3.Lerp(transform.position, targetSteppedPosition, _stepSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetSteppedRotation, _stepSpeed * Time.deltaTime);
         }
     }
 

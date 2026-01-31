@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2838284597893246595}
   - component: {fileID: 8402217128735962325}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Grip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -349,6 +349,7 @@ MonoBehaviour:
   action1reference: {fileID: -6381249978314490581, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   action2reference: {fileID: 892440835670120870, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rotateSpeed: 5
+  handGrab: {fileID: 8402217128735962325}
 --- !u!54 &1899869052861274465
 Rigidbody:
   m_ObjectHideFlags: 0

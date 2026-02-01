@@ -26,8 +26,6 @@ public class SuspicionSystem : MonoBehaviour
     private void Start()
     {
         GameplayUIManager.Instance.SetSuspicionValue(suspicionLevel);
-
-        BeginObjectiveTimer();
     }
 
     private void Update()
@@ -57,6 +55,7 @@ public class SuspicionSystem : MonoBehaviour
         {
             // End Game
             // Ah! Raccooons!
+            RaccoonsInATrenchcoatManager.Instance.FallApart();
         }
     }
 

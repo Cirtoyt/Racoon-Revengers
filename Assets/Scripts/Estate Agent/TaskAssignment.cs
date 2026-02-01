@@ -18,6 +18,9 @@ public class TaskAssignment : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     private int currentIndex;
 
+    [SerializeField] private List<AudioClip> susClips;
+    private int currentSusClip;
+
     [SerializeField] private List<string> nonSusLines;
     [SerializeField] private List<string> semiSusLines;
     [SerializeField] private List<string> verySusLines;
@@ -45,6 +48,7 @@ public class TaskAssignment : MonoBehaviour
         currentIndex = 0;
         currentWaypoint = 0;
         currentTask = 0;
+        currentSusClip = 0;
 
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -52,6 +56,8 @@ public class TaskAssignment : MonoBehaviour
 
         transform.position = waypoints[0].transform.position;
         agent.updatePosition = true;
+
+        
     }
     public void StartDialogue()
     {
@@ -73,6 +79,13 @@ public class TaskAssignment : MonoBehaviour
         agent.SetDestination(waypoints[currentWaypoint + 1].transform.position);
         currentWaypoint++;
         
+    }
+
+
+    public void SuspicionAudio()
+    {
+        audioSource.clip = susClips[currentSusClip];
+        currentSusClip++;
     }
 
     public void SetTask()

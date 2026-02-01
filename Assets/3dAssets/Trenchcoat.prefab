@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b1708e557dd04fe42af4d48fbcef8fdb, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: cd11f5ba2b5fff844846b73cc19490e1, type: 2}
+      objectReference: {fileID: 2100000, guid: b896ee1f02a4fcc40a3e8c7eb964821d, type: 2}
     - target: {fileID: 919132149155446097, guid: b1708e557dd04fe42af4d48fbcef8fdb, type: 3}
       propertyPath: m_Name
       value: Trenchcoat

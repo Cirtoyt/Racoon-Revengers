@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class HandGrab : MonoBehaviour
 {
+    [SerializeField]
+    private float ThrowForce = 4.0f;
+
     private ArmRaccoon armRaccoon;
 
     private bool grabbing = false;
@@ -69,7 +72,7 @@ public class HandGrab : MonoBehaviour
             Rigidbody rigidbody = heldObject.GetComponent<Rigidbody>();
             if (rigidbody)
             {
-                rigidbody.AddForceAtPosition(armRaccoon.transform.forward * 2.0f, rigidbody.transform.position + Vector3.up, ForceMode.Impulse);
+                rigidbody.AddForceAtPosition(armRaccoon.transform.forward * ThrowForce, rigidbody.transform.position + Vector3.up, ForceMode.Impulse);
             }
             heldObject = null;
             objectRigidbody = null;

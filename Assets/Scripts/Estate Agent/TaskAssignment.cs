@@ -90,15 +90,15 @@ public class TaskAssignment : MonoBehaviour
     public void TriggerSusLines()
     {
         //if suspicion meter low, say one random line from nonSusLines list
-        int randomInt = Random.Range(0, nonSusLines.Count -1);
-        subtitles.text = nonSusLines[randomInt];
+        /*int randomInt = Random.Range(0, nonSusLines.Count -1);
+        subtitles.text = nonSusLines[randomInt];*/
 
         //if sus meter medium
-        int randomInt = Random.Range(0, semiSusLines.Count - 1);
+        /*int randomInt = Random.Range(0, semiSusLines.Count - 1);
         subtitles.text = semiSusLines[randomInt];
 
         //if sus meter high
         int randomInt = Random.Range(0, verySusLines.Count - 1);
-        subtitles.text = verySusLines[randomInt];
+        subtitles.text = verySusLines[randomInt];*/
     }
 }

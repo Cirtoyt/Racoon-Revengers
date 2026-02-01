@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             fadeOut.StartFade(fadeOutDuration);
         }

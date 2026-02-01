@@ -47,10 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6acca801a6ef147b625082d1e36357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _capsuleCollider: {fileID: 4106656305882730594}
   _whichSide: 0
-  _headDirectionInfluenceMultiplier: 1
   _stepSize: 0.2
   _stepSpeed: 5
+  _stepCollisionCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 55
   _debugLeg: 0
 --- !u!54 &6335374372049446163
 Rigidbody:

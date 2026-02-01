@@ -10,9 +10,12 @@ public class LegRaccoon : MonoBehaviour
         Right,
     }
 
+    [SerializeField] private CapsuleCollider _capsuleCollider;
     [SerializeField] private Handedness _whichSide;
     [SerializeField] private float _stepSize = 1;
     [SerializeField] private float _stepSpeed = 1;
+    [SerializeField] private LayerMask _stepCollisionCheckLayerMask;
+    [SerializeField] private float _stepCollisionCheckRadiusOffset = -0.02f;
     [SerializeField] private bool _debugLeg = false;
 
     static StepDirection TargetStepDirection;
@@ -84,12 +87,21 @@ public class LegRaccoon : MonoBehaviour
 
         if (!AwaitingFollowUpStep)
         {
-            TargetStepDirection = sourceDirection;
-            AwaitingFollowUpStep = true;
-            justDidLeadStep = true;
-
             // Step in direction
-            Step(TargetStepDirection);
+            SetStepTargets(sourceDirection);
+
+            if (CanStepTowardsStepTargets())
+            {
+                TargetStepDirection = sourceDirection;
+                AwaitingFollowUpStep = true;
+                justDidLeadStep = true;
+            }
+            else
+            {
+                // Undo step targets being set
+                targetSteppedPosition = transform.position;
+                targetSteppedRotation = transform.rotation;
+            }
         }
         else if (AwaitingFollowUpStep && !justDidLeadStep)
         {
@@ -130,7 +142,7 @@ public class LegRaccoon : MonoBehaviour
         }
     }
 
-    private void Step(StepDirection direction)
+    private void SetStepTargets(StepDirection direction)
     {
         RaccoonsInATrenchcoatManager.Instance.HeadRaccoon.GetCurrentLookDirection(out Vector3 localHeadForwardDirection,
                                                                                   out Quaternion localHeadRotation);
@@ -173,6 +185,20 @@ public class LegRaccoon : MonoBehaviour
         RaccoonsInATrenchcoatManager.Instance.BeginStepDelay();
 
         //Debug.Log($"Stepped in direction: {stepDirection}");
+    }
+
+    private bool CanStepTowardsStepTargets()
+    {
+        bool isHittingSomething = Physics.CheckCapsule(transform.position + (Vector3.up * _capsuleCollider.radius),
+                                                       targetSteppedPosition + (Vector3.up * _capsuleCollider.radius),
+                                                       _capsuleCollider.radius + _stepCollisionCheckRadiusOffset,
+                                                       _stepCollisionCheckLayerMask,
+                                                       QueryTriggerInteraction.Ignore);
+
+        if (isHittingSomething)
+            Debug.Log("Cannot step as something is in the way!");
+
+        return !isHittingSomething;
     }
 
     private void FollowUpStep()

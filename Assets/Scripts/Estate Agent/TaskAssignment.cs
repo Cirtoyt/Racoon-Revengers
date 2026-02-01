@@ -14,6 +14,8 @@ public class TaskAssignment : MonoBehaviour
     //Dialogue
     [SerializeField] private TextMeshProUGUI subtitles;
     [SerializeField] private List<string> dialogue;
+    [SerializeField] private List<AudioClip> clips;
+    [SerializeField] private AudioSource audioSource;
     private int currentIndex;
 
     [SerializeField] private List<string> nonSusLines;
@@ -54,18 +56,23 @@ public class TaskAssignment : MonoBehaviour
     public void StartDialogue()
     {
         subtitles.text = dialogue[0];
+        audioSource.clip = clips[0];
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public void AdvanceText()
     {
         subtitles.text = dialogue[currentIndex + 1];
         currentIndex++;
+        audioSource.clip = clips[currentIndex];
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public void NextWaypoint()
     {
         agent.SetDestination(waypoints[currentWaypoint + 1].transform.position);
         currentWaypoint++;
+        
     }
 
     public void SetTask()

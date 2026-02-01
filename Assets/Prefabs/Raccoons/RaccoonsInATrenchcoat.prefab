@@ -715,6 +715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftLegRaccoon
       objectReference: {fileID: 0}
+    - target: {fileID: 6372821920445450542, guid: 057e925d545771546b1e2f7a443f899b, type: 3}
+      propertyPath: _stepSize
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 6386635079232092306, guid: 057e925d545771546b1e2f7a443f899b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.15
@@ -1060,6 +1064,10 @@ PrefabInstance:
     - target: {fileID: 807779457714561697, guid: f1d9a2156238c674087efd9805313c11, type: 3}
       propertyPath: m_Name
       value: RightLegRaccoon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873763681207505777, guid: f1d9a2156238c674087efd9805313c11, type: 3}
+      propertyPath: _stepSize
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 9088035811706652042, guid: f1d9a2156238c674087efd9805313c11, type: 3}
       propertyPath: m_LocalPosition.x

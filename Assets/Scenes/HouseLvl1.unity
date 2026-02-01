@@ -7933,6 +7933,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6552091658511270362, guid: 7d8d4715d5a45ed438cddd3033525297, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552091658511270362, guid: 7d8d4715d5a45ed438cddd3033525297, type: 3}
       propertyPath: 'dialogue.Array.data[0]'
       value: Good day sir. And might I say, that is a fine coat you're wearing.
       objectReference: {fileID: 0}
@@ -7990,9 +7994,13 @@ PrefabInstance:
     - target: {fileID: 6552091658511270362, guid: 7d8d4715d5a45ed438cddd3033525297, type: 3}
       propertyPath: 'waypoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 1261977571}
+      objectReference: {fileID: 1534660071}
     - target: {fileID: 6552091658511270362, guid: 7d8d4715d5a45ed438cddd3033525297, type: 3}
       propertyPath: 'waypoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1261977571}
+    - target: {fileID: 6552091658511270362, guid: 7d8d4715d5a45ed438cddd3033525297, type: 3}
+      propertyPath: 'waypoints.Array.data[4]'
       value: 
       objectReference: {fileID: 957002399}
     - target: {fileID: 8144239897064851834, guid: 7d8d4715d5a45ed438cddd3033525297, type: 3}

@@ -25,6 +25,8 @@ public class SuspicionSystem : MonoBehaviour
 
     private void Start()
     {
+        GameplayUIManager.Instance.SetSuspicionValue(suspicionLevel);
+
         BeginObjectiveTimer();
     }
 
@@ -46,6 +48,8 @@ public class SuspicionSystem : MonoBehaviour
     public void AddSuspicion(float suspicion)
     {
         suspicionLevel += suspicion;
+
+        GameplayUIManager.Instance.SetSuspicionValue(suspicionLevel);
 
         // Trigger sound cue based on how sus we are
 

@@ -162,7 +162,7 @@ MonoBehaviour:
   action1reference: {fileID: 2368699656998989891, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   action2reference: {fileID: -6484951634920031681, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rotateSpeed: 5
-  handGrab: {fileID: 0}
+  handGrab: {fileID: 194488464099462332}
 --- !u!54 &3522172516370852496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23087c5523bb2e949acdea89d59940b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThrowForce: 4
 --- !u!1001 &655517758506662881
 PrefabInstance:
   m_ObjectHideFlags: 0

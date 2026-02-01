@@ -27,16 +27,22 @@ public class ArmRaccoon : MonoBehaviour
     private bool action2Pressed;
 
     [SerializeField]
-    private float rotateSpeed = 250.0f;
+    private float rotateSpeed = 5.0f;
 
     private Quaternion startRot;
 
-    private void OnEnable()
-    {
+    public HandGrab handGrab;
 
+    private void Awake()
+    {
         action1 = action1reference.action;
         action2 = action2reference.action;
 
+        startRot = transform.rotation;
+    }
+
+    private void OnEnable()
+    {
         action1.started += Action1_started;
         action2.started += Action2_started;
 
@@ -46,8 +52,6 @@ public class ArmRaccoon : MonoBehaviour
 
     private void OnDisable()
     {
-
-
         action1.started -= Action1_started;
         action2.started -= Action2_started;
 
@@ -58,26 +62,41 @@ public class ArmRaccoon : MonoBehaviour
     private void Action1_started(InputAction.CallbackContext obj)
     {
         action1Pressed = true;
+
+        if(handGrab)
+        {
+            handGrab.SetGrabbing(true);
+        }
     }
     private void Action2_started(InputAction.CallbackContext context)
     {
         action2Pressed = true;
+
+        if (handGrab)
+        {
+            handGrab.SetGrabbing(true);
+        }
     }
     private void Action1_canceled(InputAction.CallbackContext obj)
     {
         action1Pressed = false;
+
+        if (handGrab)
+        {
+            handGrab.SetGrabbing(action2Pressed);
+        }
     }
     private void Action2_canceled(InputAction.CallbackContext obj)
     {
         action2Pressed = false;
+
+        if (handGrab)
+        {
+            handGrab.SetGrabbing(action1Pressed);
+        }
     }
 
-    private void Awake()
-    {
-        startRot = transform.rotation;
-    }
-
-    private void Update()
+    private void FixedUpdate()
     {
         float targetZ = GetTargetZAxis();
         float targetX = GetTargetXAxis();
@@ -89,7 +108,7 @@ public class ArmRaccoon : MonoBehaviour
     {
         if(action2Pressed)
         {
-            return 90.0f;
+            return -90.0f;
         }
         return startRot.x;
     }
@@ -107,8 +126,6 @@ public class ArmRaccoon : MonoBehaviour
     {
         Quaternion targetRot = Quaternion.Euler(x, startRot.y, z);
 
-        PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, targetRot, rotateSpeed * Time.deltaTime);
-        
-        PivotPoint.rotation = Quaternion.RotateTowards(PivotPoint.rotation, targetRot, rotateSpeed * Time.deltaTime);
+        PivotPoint.localRotation = Quaternion.Slerp(PivotPoint.localRotation, Quaternion.Euler(x, startRot.y, z), rotateSpeed * Time.deltaTime);
     }
 }

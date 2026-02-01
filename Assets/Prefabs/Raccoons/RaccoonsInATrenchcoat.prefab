@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3968729829700433207}
   - component: {fileID: 3841485989009261620}
   - component: {fileID: 4730272915955247337}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RBHips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2158864462034584422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60,7 +60,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!153 &3841485989009261620
 ConfigurableJoint:
@@ -143,7 +143,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_AngularYZDrive:
     serializedVersion: 4
-    positionSpring: 50
+    positionSpring: 550
     positionDamper: 4
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -183,7 +183,7 @@ ConfigurableJoint:
   m_YMotion: 0
   m_ZMotion: 2
   m_AngularXMotion: 2
-  m_AngularYMotion: 0
+  m_AngularYMotion: 2
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
@@ -245,7 +245,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_AngularYZDrive:
     serializedVersion: 4
-    positionSpring: 50
+    positionSpring: 550
     positionDamper: 4
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 1433071604304310322}
   - component: {fileID: 367656212466673395}
   - component: {fileID: 2177494824758785940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.05, z: 0.2}
+  m_LocalScale: {x: 0.4, y: 0.025, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4244217498654419472}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 4619039294744212936}
   - component: {fileID: 452204520625921646}
   - component: {fileID: 3114650093313745366}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RaccoonsInATrenchcoat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,6 +540,7 @@ MonoBehaviour:
   _leftArmRaccoon: {fileID: 3119087244782920006}
   _rightArmRaccoon: {fileID: 8038769890830287609}
   _headRaccoon: {fileID: 6972242173153989732}
+  _stepDelay: 0.4
 --- !u!1001 &706808553218146470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -631,16 +632,24 @@ PrefabInstance:
       value: RightArmRaccoon
       objectReference: {fileID: 0}
     - target: {fileID: 2615648863084051805, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: m_Anchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615648863084051805, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 3968729829700433207}
+    - target: {fileID: 3746999104061984690, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8874136533163969867, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1500001
       objectReference: {fileID: 0}
     - target: {fileID: 8874136533163969867, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8874136533163969867, guid: d04f6251978694d4ab3dcfa1ec91db71, type: 3}
       propertyPath: m_LocalPosition.z
@@ -718,7 +727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 481048994425313883, guid: 147aba10a0c1e174b97197b0704a9701, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.15
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 481048994425313883, guid: 147aba10a0c1e174b97197b0704a9701, type: 3}
       propertyPath: m_LocalPosition.z
@@ -873,7 +882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296923603634456956, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2296923603634456956, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -905,6 +914,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296923603634456956, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838284597893246595, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910943333597389858, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}
+      propertyPath: m_Anchor.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3910943333597389858, guid: fef113e8a69daaa40af8117f7c0d29e5, type: 3}

@@ -10,16 +10,24 @@ public class LegRaccoon : MonoBehaviour
         Right,
     }
 
+    [SerializeField] private CapsuleCollider _capsuleCollider;
     [SerializeField] private Handedness _whichSide;
-    [SerializeField] private float _headDirectionInfluenceMultiplier = 1;
     [SerializeField] private float _stepSize = 1;
     [SerializeField] private float _stepSpeed = 1;
+    [SerializeField] private LayerMask _stepCollisionCheckLayerMask;
+    [SerializeField] private float _stepCollisionCheckRadiusOffset = -0.02f;
+    [SerializeField] private bool _debugLeg = false;
 
     static StepDirection TargetStepDirection;
     static bool AwaitingFollowUpStep = false;
 
+    public Vector3 TargetSteppedPosition => targetSteppedPosition;
+    public Quaternion TargetSteppedRotation => targetSteppedRotation;
+
+    private float initialDistanceToOtherLeg;
     private bool justDidLeadStep = false;
     private Vector3 targetSteppedPosition;
+    private Quaternion targetSteppedRotation;
 
     private void Awake()
     {
@@ -60,33 +68,56 @@ public class LegRaccoon : MonoBehaviour
     }
     #endregion
 
+    private void Start()
+    {
+        if (_whichSide == Handedness.Left)
+        {
+            initialDistanceToOtherLeg = Vector3.Distance(transform.position, RaccoonsInATrenchcoatManager.Instance.RightLegRaccoon.transform.position);
+        }
+        else // Right
+        {
+            initialDistanceToOtherLeg = Vector3.Distance(transform.position, RaccoonsInATrenchcoatManager.Instance.LeftLegRaccoon.transform.position);
+        }
+    }
+
     private void TryStep(StepDirection sourceDirection)
     {
+        if (!RaccoonsInATrenchcoatManager.Instance.IsStepDelayUp())
+            return;
+
         if (!AwaitingFollowUpStep)
         {
-            TargetStepDirection = sourceDirection;
-            AwaitingFollowUpStep = true;
-            justDidLeadStep = true;
-
             // Step in direction
-            Step(TargetStepDirection);
+            SetStepTargets(sourceDirection);
+
+            if (CanStepTowardsStepTargets())
+            {
+                TargetStepDirection = sourceDirection;
+                AwaitingFollowUpStep = true;
+                justDidLeadStep = true;
+            }
+            else
+            {
+                // Undo step targets being set
+                targetSteppedPosition = transform.position;
+                targetSteppedRotation = transform.rotation;
+            }
         }
         else if (AwaitingFollowUpStep && !justDidLeadStep)
         {
             // Do follow-up step
-            if (TargetStepDirection == StepDirection.Forward
-                && sourceDirection == StepDirection.Forward)
+            if (TargetStepDirection == StepDirection.Forward && sourceDirection == StepDirection.Forward)
             {
-                Debug.Log($"Correctly following with other leg stepping in direction: {sourceDirection}");
+                //Debug.Log($"Correctly following with other leg stepping to align with leading leg");
                 // Step in same direction as target step direction
-                Step(TargetStepDirection);
+                FollowUpStep();
             }
             else if ((TargetStepDirection == StepDirection.Left || TargetStepDirection == StepDirection.Right)
-                     &&(sourceDirection == StepDirection.Left || sourceDirection == StepDirection.Right))
+                     && (sourceDirection == StepDirection.Left || sourceDirection == StepDirection.Right))
             {
-                Debug.Log($"Correctly following with other leg stepping in direction: {TargetStepDirection}");
+                //Debug.Log($"Correctly following with other leg stepping to align with leading leg");
                 // Step in same direction as target step direction
-                Step(TargetStepDirection);
+                FollowUpStep();
             }
             else // Left/Right
             {
@@ -94,7 +125,7 @@ public class LegRaccoon : MonoBehaviour
                 // Trigger slip due to uncoordination?
                 // Make the estate agent sus if she's looking
                 // Then step correctly still in target direction
-                Step(TargetStepDirection);
+                FollowUpStep();
             }
 
             // Notify other leg we did a follow-up step
@@ -111,51 +142,93 @@ public class LegRaccoon : MonoBehaviour
         }
     }
 
-    private void Step(StepDirection direction)
+    private void SetStepTargets(StepDirection direction)
     {
         RaccoonsInATrenchcoatManager.Instance.HeadRaccoon.GetCurrentLookDirection(out Vector3 localHeadForwardDirection,
                                                                                   out Quaternion localHeadRotation);
 
-        Vector3 stepCoreDirection = Vector3.zero;
-        switch (direction)
-        {
-            case StepDirection.Forward:
-                stepCoreDirection = RaccoonsInATrenchcoatManager.Instance.transform.forward;
-                break;
-            case StepDirection.Left:
-                stepCoreDirection = -RaccoonsInATrenchcoatManager.Instance.transform.right;
-                // Rotate head facing directioon to align with step left direction
-                localHeadForwardDirection = Quaternion.Euler(0, -90, 0) * localHeadForwardDirection;
-                break;
-            case StepDirection.Right:
-                stepCoreDirection = RaccoonsInATrenchcoatManager.Instance.transform.right;
-                // Rotate head facing directioon to align with step right direction
-                localHeadForwardDirection = Quaternion.Euler(0, 90, 0) * localHeadForwardDirection;
-                break;
-        }
-
-        // Flatten target step core direction
-        stepCoreDirection.y = 0;
-        stepCoreDirection.Normalize();
-
-        Vector3 worldHeadDirection = RaccoonsInATrenchcoatManager.Instance.HeadRaccoon.transform.TransformDirection(localHeadForwardDirection);
+        Vector3 worldHeadDirection = RaccoonsInATrenchcoatManager.Instance.HeadRaccoon.transform.rotation * localHeadForwardDirection;
         // Flatten head direction
         worldHeadDirection.y = 0;
         worldHeadDirection.Normalize();
 
-        // Add head influence to core step direction
-        Vector3 stepDirection = stepCoreDirection + (worldHeadDirection * _headDirectionInfluenceMultiplier);
+        // Set leg rotation target to face stepping direction based on head facing direction
+        targetSteppedRotation = Quaternion.LookRotation(worldHeadDirection, Vector3.up);
+
+        // Temp yoink transform for easy forward/right calculations
+        Quaternion currentRotation = transform.rotation;
+        transform.rotation = targetSteppedRotation;
+        Vector3 stepDirection = Vector3.zero;
+        switch (direction)
+        {
+            case StepDirection.Forward:
+                stepDirection = transform.forward;
+                break;
+            case StepDirection.Left:
+                stepDirection = -transform.right;
+                break;
+            case StepDirection.Right:
+                stepDirection = transform.right;
+                break;
+        }
+
+        // Flatten target step core direction
+        stepDirection.y = 0;
         stepDirection.Normalize();
 
+        // Set leg position target in direction of step by step size
         targetSteppedPosition += stepDirection * _stepSize;
 
-        Debug.Log($"Stepped in direction: {stepDirection}");
+        // Reassign current rotation to transform
+        transform.rotation = currentRotation;
+
+        RaccoonsInATrenchcoatManager.Instance.BeginStepDelay();
+
+        //Debug.Log($"Stepped in direction: {stepDirection}");
+    }
+
+    private bool CanStepTowardsStepTargets()
+    {
+        bool isHittingSomething = Physics.CheckCapsule(transform.position + (Vector3.up * _capsuleCollider.radius),
+                                                       targetSteppedPosition + (Vector3.up * _capsuleCollider.radius),
+                                                       _capsuleCollider.radius + _stepCollisionCheckRadiusOffset,
+                                                       _stepCollisionCheckLayerMask,
+                                                       QueryTriggerInteraction.Ignore);
+
+        if (isHittingSomething)
+            Debug.Log("Cannot step as something is in the way!");
+
+        return !isHittingSomething;
+    }
+
+    private void FollowUpStep()
+    {
+        if (_whichSide == Handedness.Left)
+        {
+            targetSteppedPosition = RaccoonsInATrenchcoatManager.Instance.RightLegRaccoon.TargetSteppedPosition
+                                    + -RaccoonsInATrenchcoatManager.Instance.RightLegRaccoon.transform.right * initialDistanceToOtherLeg;
+
+            targetSteppedRotation = RaccoonsInATrenchcoatManager.Instance.RightLegRaccoon.TargetSteppedRotation;
+        }
+        else // Right
+        {
+            targetSteppedPosition = RaccoonsInATrenchcoatManager.Instance.LeftLegRaccoon.TargetSteppedPosition
+                                    + RaccoonsInATrenchcoatManager.Instance.LeftLegRaccoon.transform.right * initialDistanceToOtherLeg;
+
+            targetSteppedRotation = RaccoonsInATrenchcoatManager.Instance.LeftLegRaccoon.TargetSteppedRotation;
+        }
+
+        RaccoonsInATrenchcoatManager.Instance.BeginStepDelay();
     }
 
     private void FixedUpdate()
     {
-        // Move foot to target stepped position
-        transform.position = Vector3.Lerp(transform.position, targetSteppedPosition, _stepSpeed * Time.deltaTime);
+        if (!_debugLeg)
+        {
+            // Move foot to target stepped position
+            transform.position = Vector3.Lerp(transform.position, targetSteppedPosition, _stepSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetSteppedRotation, _stepSpeed * Time.deltaTime);
+        }
     }
 
     public void NotifyOtherLegStartedFollowUpStep()

@@ -540,6 +540,7 @@ MonoBehaviour:
   _leftArmRaccoon: {fileID: 3119087244782920006}
   _rightArmRaccoon: {fileID: 8038769890830287609}
   _headRaccoon: {fileID: 6972242173153989732}
+  _stepDelay: 0.4
 --- !u!1001 &706808553218146470
 PrefabInstance:
   m_ObjectHideFlags: 0

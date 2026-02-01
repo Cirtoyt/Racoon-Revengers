@@ -29,7 +29,7 @@ public class ArmRaccoon : MonoBehaviour
     [SerializeField]
     private float rotateSpeed = 5.0f;
 
-    private Quaternion startRot;
+    private Vector3 startRot;
 
     public HandGrab handGrab;
 
@@ -37,8 +37,11 @@ public class ArmRaccoon : MonoBehaviour
     {
         action1 = action1reference.action;
         action2 = action2reference.action;
+    }
 
-        startRot = transform.rotation;
+    private void Start()
+    {
+        startRot = PivotPoint.rotation.eulerAngles;
     }
 
     private void OnEnable()
@@ -98,34 +101,26 @@ public class ArmRaccoon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float targetZ = GetTargetZAxis();
-        float targetX = GetTargetXAxis();
-
-        RotateArm(targetX, targetZ);
+        RotateArm();
     }
 
-    private float GetTargetXAxis()
+    private void RotateArm()
     {
-        if(action2Pressed)
-        {
-            return -90.0f;
-        }
-        return startRot.x;
-    }
-
-    private float GetTargetZAxis()
-    {
+        int xLook = 0;
+        int yLook = -1;
+        int zLook = 0;
         if(action1Pressed)
         {
-            return (ArmType == ArmType.RightArm ? 90.0f : 270.0f);
+            zLook = 1;
+            yLook = 0;
         }
-        return startRot.z;
-    }
+        if(action2Pressed)
+        {
+            xLook = ArmType == ArmType.RightArm ? 1 : -1;
+            yLook = 0;
+        }
+        Quaternion targetRot = Quaternion.LookRotation(new Vector3(xLook, yLook, zLook), Vector3.up);
 
-    private void RotateArm(float x, float z)
-    {
-        Quaternion targetRot = Quaternion.Euler(x, startRot.y, z);
-
-        PivotPoint.localRotation = Quaternion.Slerp(PivotPoint.localRotation, Quaternion.Euler(x, startRot.y, z), rotateSpeed * Time.deltaTime);
+        PivotPoint.localRotation = Quaternion.Slerp(PivotPoint.localRotation, targetRot, rotateSpeed * Time.deltaTime);
     }
 }

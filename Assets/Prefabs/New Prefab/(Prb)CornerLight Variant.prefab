@@ -70,12 +70,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -93,17 +93,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: (Prb)CornerLight Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 297888784413324495, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1110560525419753077, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.663
       objectReference: {fileID: 0}
     - target: {fileID: 1110560525419753077, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1469
+      value: -0.000000426285
       objectReference: {fileID: 0}
     - target: {fileID: 1110560525419753077, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.386
+      value: 4.515
       objectReference: {fileID: 0}
     - target: {fileID: 1110560525419753077, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -133,6 +137,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1370547556135337513, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1506828139167187354, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
     m_RemovedGameObjects: []
@@ -144,6 +152,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 297888784413324495, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1835265627758180420}
+    - targetCorrespondingSourceObject: {fileID: 297888784413324495, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1332277358210184218}
   m_SourcePrefab: {fileID: 100100000, guid: 7232880492f88cd4d9624a501fc37aba, type: 3}
 --- !u!4 &466564456681645626 stripped
 Transform:
@@ -176,3 +187,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.37, y: 2.7412808, z: 0.4}
   m_Center: {x: 0, y: 1.3806404, z: 0}
+--- !u!54 &1332277358210184218
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950894258953747584}
+  serializedVersion: 5
+  m_Mass: 0.5
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -9,7 +9,7 @@ public class TriggerBox : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         Debug.Log("collision");
-        if(collision.gameObject.CompareTag("Player") && !invoked)
+        if(collision.gameObject.layer == 3 && !invoked)
         {
 
             triggerEvent.Invoke();

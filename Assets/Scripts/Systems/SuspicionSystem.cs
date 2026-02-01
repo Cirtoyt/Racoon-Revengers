@@ -13,6 +13,8 @@ public class SuspicionSystem : MonoBehaviour
     private bool objectiveTimerRunning = false;
     private float objectiveTimer = 0;
 
+    [SerializeField] TaskAssignment joe;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,6 +39,7 @@ public class SuspicionSystem : MonoBehaviour
             {
                 AddSuspicion(objectiveSusIncreaseAmount);
                 objectiveTimer = 0;
+
 
                 Debug.Log("Objective taking too long! Sus being added!!");
             }

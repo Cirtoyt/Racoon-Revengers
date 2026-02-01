@@ -14,7 +14,12 @@ public class TaskAssignment : MonoBehaviour
     //Dialogue
     [SerializeField] private TextMeshProUGUI subtitles;
     [SerializeField] private List<string> dialogue;
+    [SerializeField] private List<AudioClip> clips;
+    [SerializeField] private AudioSource audioSource;
     private int currentIndex;
+
+    [SerializeField] private List<AudioClip> susClips;
+    private int currentSusClip;
 
     [SerializeField] private List<string> nonSusLines;
     [SerializeField] private List<string> semiSusLines;
@@ -43,6 +48,7 @@ public class TaskAssignment : MonoBehaviour
         currentIndex = 0;
         currentWaypoint = 0;
         currentTask = 0;
+        currentSusClip = 0;
 
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -50,22 +56,36 @@ public class TaskAssignment : MonoBehaviour
 
         transform.position = waypoints[0].transform.position;
         agent.updatePosition = true;
+
+        
     }
     public void StartDialogue()
     {
         subtitles.text = dialogue[0];
+        audioSource.clip = clips[0];
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public void AdvanceText()
     {
         subtitles.text = dialogue[currentIndex + 1];
         currentIndex++;
+        audioSource.clip = clips[currentIndex];
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public void NextWaypoint()
     {
         agent.SetDestination(waypoints[currentWaypoint + 1].transform.position);
         currentWaypoint++;
+        
+    }
+
+
+    public void SuspicionAudio()
+    {
+        audioSource.clip = susClips[currentSusClip];
+        currentSusClip++;
     }
 
     public void SetTask()

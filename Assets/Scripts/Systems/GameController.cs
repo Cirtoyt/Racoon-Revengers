@@ -2,11 +2,31 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Instance;
     public FadeOut fadeOut;
 
-    private void Start()
+    public float fadeOutDuration;
+
+    private void Awake()
     {
-        fadeOut.StartFade(10.0f);
+        if (Instance)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+    }
+
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            fadeOut.StartFade(fadeOutDuration);
+        }
     }
 
 }

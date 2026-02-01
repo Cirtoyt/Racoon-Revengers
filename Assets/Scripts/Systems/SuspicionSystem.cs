@@ -6,20 +6,75 @@ public class SuspicionSystem : MonoBehaviour
 
     public static SuspicionSystem Instance { get; private set; }
 
-    [SerializeField]
-    public float suspicionLevel;
+    [SerializeField] private float objectiveSusTimerDuration = 30;
+    [SerializeField] private float objectiveSusIncreaseAmount = 0.3f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private float suspicionLevel = 0;
+    private bool objectiveTimerRunning = false;
+    private float objectiveTimer = 0;
+
     void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        BeginObjectiveTimer();
+    }
+
+    private void Update()
+    {
+        if (objectiveTimerRunning)
+        {
+            objectiveTimer += Time.deltaTime;
+            if (objectiveTimer >= objectiveSusTimerDuration)
+            {
+                AddSuspicion(objectiveSusIncreaseAmount);
+                objectiveTimer = 0;
+
+                Debug.Log("Objective taking too long! Sus being added!!");
+            }
         }
     }
 
     public void AddSuspicion(float suspicion)
     {
         suspicionLevel += suspicion;
+
+        // Trigger sound cue based on how sus we are
+
+        if (suspicionLevel >= 1)
+        {
+            // End Game
+            // Ah! Raccooons!
+        }
+    }
+
+    /// <summary>
+    /// Resets the timer if called whilst it is running
+    /// </summary>
+    public void BeginObjectiveTimer()
+    {
+        objectiveTimer = 0;
+        objectiveTimerRunning = true;
+
+        Debug.Log("Reset and began objective timer");
+    }
+
+    /// <summary>
+    /// Call when ending game
+    /// </summary>
+    public void EndObjectiveTimer()
+    {
+        objectiveTimer = 0;
+        objectiveTimerRunning = false;
+
+        Debug.Log("Ended objective timer");
     }
 }

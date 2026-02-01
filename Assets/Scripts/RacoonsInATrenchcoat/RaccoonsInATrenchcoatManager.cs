@@ -28,6 +28,7 @@ public class RaccoonsInATrenchcoatManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
+            return;
         }
         instance = this;
     }

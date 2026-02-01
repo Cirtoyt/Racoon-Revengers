@@ -3,9 +3,11 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class TaskAssignment : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class TaskAssignment : MonoBehaviour
     [SerializeField] private TextMeshProUGUI subtitles;
     [SerializeField] private List<string> dialogue;
     private int currentIndex;
+
+    [SerializeField] private List<string> nonSusLines;
+    [SerializeField] private List<string> semiSusLines;
+    [SerializeField] private List<string> verySusLines;
 
     //Movement
     private NavMeshAgent agent;
@@ -79,5 +85,20 @@ public class TaskAssignment : MonoBehaviour
         {
             animator.SetBool("Walking", false);
         }
+    }
+
+    public void TriggerSusLines()
+    {
+        //if suspicion meter low, say one random line from nonSusLines list
+        /*int randomInt = Random.Range(0, nonSusLines.Count -1);
+        subtitles.text = nonSusLines[randomInt];*/
+
+        //if sus meter medium
+        /*int randomInt = Random.Range(0, semiSusLines.Count - 1);
+        subtitles.text = semiSusLines[randomInt];
+
+        //if sus meter high
+        int randomInt = Random.Range(0, verySusLines.Count - 1);
+        subtitles.text = verySusLines[randomInt];*/
     }
 }

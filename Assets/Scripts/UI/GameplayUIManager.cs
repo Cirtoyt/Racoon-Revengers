@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameplayUIManager : MonoBehaviour
@@ -20,5 +21,11 @@ public class GameplayUIManager : MonoBehaviour
     public void SetSuspicionValue(float value)
     {
         _susSlider.value = value;
+    }
+
+    public void FinishGame()
+    {
+
+        SceneManager.LoadScene(3);
     }
 }

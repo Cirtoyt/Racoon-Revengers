@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SuspicionSystem : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SuspicionSystem : MonoBehaviour
 
     [SerializeField] private float objectiveSusTimerDuration = 30;
     [SerializeField] private float objectiveSusIncreaseAmount = 0.3f;
+    [SerializeField] private AudioSource AhRaccoonsSound;
 
     private float suspicionLevel = 0;
     private bool objectiveTimerRunning = false;
@@ -44,6 +46,12 @@ public class SuspicionSystem : MonoBehaviour
                 Debug.Log("Objective taking too long! Sus being added!!");
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+            SceneManager.LoadScene(0);
+
+        if (Input.GetKeyDown(KeyCode.Return))
+            SceneManager.LoadScene(3);
     }
 
     public void AddSuspicion(float suspicion)
@@ -58,6 +66,7 @@ public class SuspicionSystem : MonoBehaviour
         {
             // End Game
             // Ah! Raccooons!
+            AhRaccoonsSound.Play();
             RaccoonsInATrenchcoatManager.Instance.FallApart();
         }
     }

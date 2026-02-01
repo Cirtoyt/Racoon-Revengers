@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5d17fb48b57f345a2b894a7c4ccf76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suspicionLevel: 0
+  objectiveSusTimerDuration: 30
+  objectiveSusIncreaseAmount: 0.2
+  joe: {fileID: 0}

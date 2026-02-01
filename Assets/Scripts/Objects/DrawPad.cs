@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DrawPad : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class DrawPad : MonoBehaviour
 
     Vector2 currentDraw;
     Texture2D texture;
+
+    private float timer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -79,11 +82,21 @@ public class DrawPad : MonoBehaviour
         {
             return;
         }
-        currentDraw += GetInputs();
-        currentDraw.x = Mathf.Clamp(currentDraw.x, borders, texture.width - borders);
-        currentDraw.y = Mathf.Clamp(currentDraw.y, borders, texture.height - borders);
-        drawPixels3By3(currentDraw);
-        texture.Apply();
+
+        timer += Time.deltaTime;
+
+        if (timer < 30)
+        {
+            currentDraw += GetInputs();
+            currentDraw.x = Mathf.Clamp(currentDraw.x, borders, texture.width - borders);
+            currentDraw.y = Mathf.Clamp(currentDraw.y, borders, texture.height - borders);
+            drawPixels3By3(currentDraw);
+            texture.Apply();
+        }
+        else if (timer > 40)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     void drawPixels3By3(Vector2 location)
